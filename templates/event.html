@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+  <p>
+    <b>ID:</b> {{ event.id }}<br/>
+    <b>Received:</b> {{ event.received_at }}<br/>
+    <b>Method:</b> {{ event.method }}<br/>
+    <b>Path:</b> {{ event.path }}<br/>
+    <b>Content-Type:</b> {{ event.content_type or "" }}
+  </p>
+
+  <h2>Headers</h2>
+  <pre>{{ headers | tojson(indent=2) }}</pre>
+
+  <h2>Body</h2>
+  {% if pretty_json %}
+    <pre>{{ pretty_json }}</pre>
+  {% else %}
+    <pre>{{ event.body_text or "" }}</pre>
+  {% endif %}
+{% endblock %}

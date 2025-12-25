@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+  <p class="muted">Showing the 200 most recent webhooks.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Received</th>
+        <th>Content-Type</th>
+        <th>Body (preview)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for e in events %}
+      <tr>
+        <td><a href="{{ url_for('event_detail', event_id=e.id) }}">{{ e.id }}</a></td>
+        <td>{{ e.received_at }}</td>
+        <td>{{ e.content_type or "" }}</td>
+        <td class="muted">{{ (e.body_text or "")[:140] }}{% if (e.body_text or "")|length > 140 %}…{% endif %}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
