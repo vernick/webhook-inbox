@@ -15,7 +15,7 @@ from sqlalchemy.orm import declarative_base, sessionmaker
 print("initializing flask app")
 app = Flask(__name__)
 
-DATABASE_URL = os.environ.get("DATABASE_URL", "postgresql://webhook_inbox_user:53kiIMXusmJyzciM1svvEAaT5MVhpksN@dpg-d56lkfn5r7bs73fm4380-a.virginia-postgres.render.com/webhook_inbox")
+DATABASE_URL = os.environ.get("DATABASE_URL", "")
 # Render Postgres URLs are commonly postgres://...; SQLAlchemy wants postgresql://...
 if DATABASE_URL.startswith("postgres://"):
     DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
